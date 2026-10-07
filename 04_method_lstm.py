@@ -3,7 +3,7 @@
 
 Lee: data/processed/tensor_thec_d.pkl  (generado por 00_build_tensor_pkl.py)
 
-LSTM que procesa el tensor THEC-D como secuencia temporal de 8 pasos.
+LSTM que procesa el tensor como secuencia temporal de 8 pasos.
 Cada paso es un vector de 4×8 = 32 features (4 componentes de secuencia
 × 8 features por componente), representando la firma espectral en una
 ventana de medio ciclo.
