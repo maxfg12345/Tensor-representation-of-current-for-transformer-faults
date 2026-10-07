@@ -26,18 +26,15 @@ from sklearn.preprocessing import label_binarize
 import warnings
 warnings.filterwarnings("ignore")
 
-# =============================================================================
+
 # RUTAS
-# =============================================================================
 
 PKL_PATH    = Path("data/processed/tensor_thec_d.pkl")
 RESULTS_DIR = Path("results")
 RESULTS_DIR.mkdir(exist_ok=True)
 
 
-# =============================================================================
 # CARGAR DATOS
-# =============================================================================
 
 def load_data():
     print(f"📥 Cargando: {PKL_PATH}")
@@ -54,9 +51,7 @@ def load_data():
     return X, y, class_names, random_state, test_size
 
 
-# =============================================================================
 # CLASIFICADOR DE FROBENIUS
-# =============================================================================
 
 class FrobeniusClassifier:
     """
@@ -131,9 +126,7 @@ class FrobeniusClassifier:
         return mat
 
 
-# =============================================================================
 # MAIN
-# =============================================================================
 
 def main():
     print("=" * 65)
