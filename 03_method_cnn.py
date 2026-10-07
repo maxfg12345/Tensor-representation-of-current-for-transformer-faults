@@ -3,7 +3,7 @@
 
 Lee: data/processed/tensor_thec_d.pkl  (generado por 00_build_tensor_pkl.py)
 
-CNN-2D que recibe el tensor THEC-D (4, 8, 8) directamente como entrada.
+CNN-2D que recibe el tensor (4, 8, 8) directamente como entrada.
 Opera sobre las dimensiones features×ventanas para cada componente de
 secuencia, aprendiendo patrones locales en el espacio 2D.
 
