@@ -3,7 +3,7 @@
 
 Lee: data/processed/tensor_thec_d.pkl  (generado por 00_build_tensor_pkl.py)
 
-Random Forest sobre el tensor THEC-D aplanado a vector de 256 features.
+Random Forest sobre el tensor aplanado a vector de 256 features.
 El clasificador aprende límites de decisión no lineales sobre los features.
 
 Resultados guardados en: results/02_rf_results.json
