@@ -1,7 +1,7 @@
 """
-00_build_tensor_pkl.py  —  CONSTRUCCIÓN DEL TENSOR THEC-D
+CONSTRUCCIÓN DEL TENSOR
 
-Procesa los 36,720 archivos .txt del dataset Bera et al. y genera
+Se procesa los 36,720 archivos .txt del dataset y genera
 el archivo tensor_thec_d.pkl con todos los tensores calculados.
 
 Este archivo es la entrada de los 4 scripts de clasificadores:
@@ -28,18 +28,14 @@ from pathlib import Path
 from datetime import datetime
 from tqdm import tqdm
 
-# =============================================================================
 # RUTAS — los 4 scripts de clasificadores leen estas constantes del pkl
-# =============================================================================
 
 DATASET_DIR  = Path("data/ieee_dataset")
 OUTPUT_PATH  = Path("data/processed/tensor_thec_d.pkl")
 
-# =============================================================================
 # PARÁMETROS DEL TENSOR — fijos para todos los scripts
-# =============================================================================
 
-FS           = 10000.0          # Hz — confirmado del README de Bera
+FS           = 10000.0          # Hz — del README del dataset
 F0           = 60.0             # Hz — sistema de 60 Hz
 HALF_CYCLE   = int(FS / (2*F0)) # 83 muestras por ventana de medio ciclo
 NUM_WINDOWS  = 8                # ventanas por señal (~4 ciclos completos)
@@ -49,9 +45,7 @@ TENSOR_SHAPE = (NUM_SEQ, NUM_FEATURES, NUM_WINDOWS)   # 4×8×8 = 256
 RANDOM_STATE = 42
 TEST_SIZE    = 0.20             # 80/20 estratificado
 
-# =============================================================================
 # CLASES — orden y nombres fijos para todos los scripts
-# =============================================================================
 
 CLASS_NAMES = [
     "Monofasica-A", "Monofasica-B", "Monofasica-C",
@@ -78,9 +72,7 @@ A2_IM = np.sin(4 * np.pi / 3)   # -0.866
 HARM2_IDX = int(round(2 * F0 * HALF_CYCLE / FS))   # bin FFT de 120 Hz
 
 
-# =============================================================================
 # FUNCIONES DE CONSTRUCCIÓN DEL TENSOR
-# =============================================================================
 
 def symmetrical_components(ia_w, ib_w, ic_w):
     """Magnitudes |I0|, |I1|, |I2| por Fortescue muestra a muestra."""
@@ -181,9 +173,7 @@ def build_tensor(ia, ib, ic):
     return T
 
 
-# =============================================================================
 # PIPELINE PRINCIPAL
-# =============================================================================
 
 def collect_files():
     """Escanea el dataset y retorna lista de (filepath, class_id)."""
@@ -253,11 +243,11 @@ def main():
     print("=" * 65)
 
     if not DATASET_DIR.exists():
-        print(f"\n❌ No se encuentra: {DATASET_DIR}")
+        print(f"\n No se encuentra: {DATASET_DIR}")
         return
 
     # Prueba rápida con 3 archivos antes de procesar todo
-    print("\n🧪 Prueba rápida con 3 archivos...")
+    print("\n Prueba rápida con 3 archivos...")
     test_files = []
     for folder_name, class_id in list(FOLDER_TO_CLASS.items())[:3]:
         folder = DATASET_DIR / folder_name
