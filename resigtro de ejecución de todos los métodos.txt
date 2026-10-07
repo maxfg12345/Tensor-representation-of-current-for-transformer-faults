@@ -1,0 +1,1016 @@
+e:\TransformerFaultDetection\.venv\Scripts\python.exe e:/TransformerFaultDetection/scripts/01_method_frobenius.py
+=================================================================
+MÉTODO 1 — DISTANCIA DE FROBENIUS TENSORIAL
+=================================================================
+
+📥 Cargando: data\processed\tensor_thec_d.pkl
+   X: (36720, 4, 8, 8)  |  y: (36720,)  |  Clases: 13
+   Tensor shape: [4, 8, 8]  |  Split: 80/20
+   Train: 29,376  |  Test: 7,344
+
+🔄 Entrenando (calculando 13 prototipos)...
+   ✅ Listo en 0.05s  |  Parámetros: 3,328
+
+🔄 Clasificando test set...
+
+=================================================================
+RESULTADOS GLOBALES — FROBENIUS TENSORIAL
+=================================================================
+   Accuracy:              17.3883%
+   F1 weighted:           17.3097%
+   F1 macro:              12.8898%
+   F1 micro:              17.3883%
+   AUC-ROC macro:         0.6392
+   AUC-ROC weighted:      0.6313
+   Latencia/muestra:      0.0246 ms
+   Tiempo entrenamiento:  0.0464 s
+   Parámetros del modelo: 3,328
+
+=================================================================
+CLASSIFICATION REPORT POR CLASE
+=================================================================
+                      precision    recall  f1-score   support
+
+        Monofasica-A       0.02      0.00      0.00       432
+        Monofasica-B       0.04      0.04      0.04       432
+        Monofasica-C       0.21      0.20      0.20       432
+         Bifasica-AB       0.27      0.04      0.07       432
+         Bifasica-AC       0.08      0.01      0.02       432
+         Bifasica-BC       0.20      0.03      0.06       432
+    Trifasica-tierra       0.30      0.27      0.28       432
+         FaseFase-AB       0.12      0.02      0.03       432
+         FaseFase-AC       0.07      0.56      0.12       432
+         FaseFase-BC       0.27      0.16      0.20       432
+Trifasica-sin-tierra       0.19      0.10      0.13       432
+       Espira-espira       0.41      0.33      0.37      1728
+   Devanado-devanado       0.40      0.10      0.16       864
+
+            accuracy                           0.17      7344
+           macro avg       0.20      0.14      0.13      7344
+        weighted avg       0.25      0.17      0.17      7344
+
+=================================================================
+CONFUSION MATRIX (conteos absolutos)
+=================================================================
+                        Monofa  Monofa  Monofa  Bifasi  Bifasi  Bifasi  Trifas  FaseFa  FaseFa  FaseFa  Trifas  Espira  Devana
+  Monofasica-A               1      46       4       0       5       5       6       0     214       0       0     151       0
+  Monofasica-B               3      16      83       7       0       9       8       0     202       0       0      93      11
+  Monofasica-C               0      42      85       5       0       1       6       0     208       0       0      85       0
+  Bifasica-AB                4      47      63      17       1       6       4       1     215       0       3      63       8
+  Bifasica-AC                5      25      66       5       5       4      10       0     207       0       0      93      12
+  Bifasica-BC                0      57       6       4      11      14      17       0     218       0       4     101       0
+  Trifasica-tierra           3       7      21       2       1       0     115      25     147      53       7      26      25
+  FaseFase-AB                1       4      11       5       7       0      30       8     267      38      48      10       3
+  FaseFase-AC                3       0       9       3       0       0      12      13     240      27      75      19      31
+  FaseFase-BC                2       0       0       0       0       0      30       8     240      67      55      20      10
+  Trifasica-sin-tierra       6       8      17      11       1       1      72      10     154      67      44      16      25
+  Espira-espira              7     142      36       2      18      13      34       0     894       0       0     578       4
+  Devanado-devanado         19      63       7       3      12      18      39       4     459       0       0     153      87
+
+=================================================================
+AUC-ROC POR CLASE (One-vs-Rest)
+=================================================================
+   Monofasica-A              0.6048 ⚠️
+   Monofasica-B              0.5998 ⚠️
+   Monofasica-C              0.6656 ⚠️
+   Bifasica-AB               0.5767 ⚠️
+   Bifasica-AC               0.5766 ⚠️
+   Bifasica-BC               0.5425 ⚠️
+   Trifasica-tierra          0.6969 ⚠️
+   FaseFase-AB               0.7114 ⚠️
+   FaseFase-AC               0.6902 ⚠️
+   FaseFase-BC               0.7621 ⚠️
+   Trifasica-sin-tierra      0.6716 ⚠️
+   Espira-espira             0.6051 ⚠️
+   Devanado-devanado         0.6070 ⚠️
+   MACRO AVERAGE             0.6392
+
+=================================================================
+ANÁLISIS DE SEPARABILIDAD POR CLASE
+=================================================================
+  Clase                          Intra      Inter    Ratio Estado
+  -----------------------------------------------------------------
+  Monofasica-A                1226.923    928.291    0.757  ❌
+  Monofasica-B                1280.926    975.560    0.762  ❌
+  Monofasica-C                1199.970    934.144    0.778  ❌
+  Bifasica-AB                 1063.757    799.257    0.751  ❌
+  Bifasica-AC                 1153.252    875.578    0.759  ❌
+  Bifasica-BC                 1154.663    863.075    0.747  ❌
+  Trifasica-tierra            1005.857    824.720    0.820  ❌
+  FaseFase-AB                  691.160    597.805    0.865  ❌
+  FaseFase-AC                  681.021    620.942    0.912  🟡
+  FaseFase-BC                  741.633    659.276    0.889  ❌
+  Trifasica-sin-tierra        1020.377    823.474    0.807  ❌
+  Espira-espira               1223.828    913.933    0.747  ❌
+  Devanado-devanado            674.321    515.853    0.765  ❌
+
+=================================================================
+DISTANCIAS ENTRE PROTOTIPOS (par más separado y menos separado)
+=================================================================
+   Más separados:  FaseFase-BC vs Espira-espira: 746.6429
+   Menos separados:Monofasica-A vs Espira-espira: 36.2212
+
+=================================================================
+ANÁLISIS ESPECÍFICO — ESPIRA-ESPIRA vs MONOFÁSICA-A
+=================================================================
+   Accuracy binario (solo estas 2 clases): 26.81%
+   Distancia Frobenius entre prototipos:   36.2212
+   Distancia máxima entre cualquier par:   746.6429
+   Ratio relativo:                         0.0485
+
+=================================================================
+CROSS-VALIDATION 5-FOLD (robustez del resultado)
+=================================================================
+   Fold 1: Acc=18.70%  F1=18.42%
+   Fold 2: Acc=16.88%  F1=17.02%
+   Fold 3: Acc=14.09%  F1=14.89%
+   Fold 4: Acc=14.88%  F1=15.46%
+   Fold 5: Acc=15.25%  F1=15.61%
+   MEDIA   : Acc=15.96% ± 1.64%  F1=16.28% ± 1.28%
+
+💾 results\01_frobenius_results.json
+(.venv) PS E:\TransformerFaultDetection> & e:\TransformerFaultDetection\.venv\Scripts\python.exe e:/TransformerFaultDetection/scripts/02_method_rf.py       
+=================================================================
+MÉTODO 2 — RANDOM FOREST SOBRE TENSOR APLANADO
+=================================================================
+
+📥 Cargando: data\processed\tensor_thec_d.pkl
+   X aplanado: (36720, 256)  |  Features: 256
+   Train: 29,376  |  Test: 7,344
+
+🔄 Entrenando Random Forest (300 árboles)...
+   ✅ Listo en 52.70s
+
+=================================================================
+RESULTADOS GLOBALES — RANDOM FOREST
+=================================================================
+   Accuracy:              99.4281%
+   F1 weighted:           99.4259%
+   F1 macro:              99.3886%
+   F1 micro:              99.4281%
+   AUC-ROC macro:         0.9992
+   AUC-ROC weighted:      0.9993
+   Latencia/muestra:      0.4368 ms
+   Tiempo entrenamiento:  52.7034 s
+   Árboles:               300
+
+=================================================================
+CLASSIFICATION REPORT POR CLASE
+=================================================================
+                      precision    recall  f1-score   support
+
+        Monofasica-A       1.00      0.96      0.98       432
+        Monofasica-B       1.00      0.99      0.99       432
+        Monofasica-C       1.00      1.00      1.00       432
+         Bifasica-AB       1.00      1.00      1.00       432
+         Bifasica-AC       1.00      1.00      1.00       432
+         Bifasica-BC       0.99      1.00      1.00       432
+    Trifasica-tierra       1.00      0.99      0.99       432
+         FaseFase-AB       1.00      0.99      0.99       432
+         FaseFase-AC       0.99      1.00      0.99       432
+         FaseFase-BC       1.00      1.00      1.00       432
+Trifasica-sin-tierra       0.99      1.00      0.99       432
+       Espira-espira       0.99      1.00      0.99      1728
+   Devanado-devanado       1.00      1.00      1.00       864
+
+            accuracy                           0.99      7344
+           macro avg       1.00      0.99      0.99      7344
+        weighted avg       0.99      0.99      0.99      7344
+
+=================================================================
+CONFUSION MATRIX
+=================================================================
+                        Monofa  Monofa  Monofa  Bifasi  Bifasi  Bifasi  Trifas  FaseFa  FaseFa  FaseFa  Trifas  Espira  Devana
+  Monofasica-A             413       0       0       0       0       0       0       0       0       0       1      18       0
+  Monofasica-B               1     428       0       0       0       0       0       0       0       0       0       3       0
+  Monofasica-C               0       2     430       0       0       0       0       0       0       0       0       0       0
+  Bifasica-AB                0       0       0     432       0       0       0       0       0       0       0       0       0
+  Bifasica-AC                0       0       0       1     431       0       0       0       0       0       0       0       0
+  Bifasica-BC                0       0       0       0       1     431       0       0       0       0       0       0       0
+  Trifasica-tierra           0       0       0       0       0       3     426       0       0       0       3       0       0
+  FaseFase-AB                0       0       0       0       0       0       1     427       4       0       0       0       0
+  FaseFase-AC                0       0       0       0       0       0       0       1     431       0       0       0       0
+  FaseFase-BC                0       0       0       0       0       0       0       0       1     431       0       0       0
+  Trifasica-sin-tierra       0       0       0       0       0       0       0       0       0       2     430       0       0
+  Espira-espira              0       0       0       0       0       0       0       0       0       0       0    1728       0
+  Devanado-devanado          0       0       0       0       0       0       0       0       0       0       0       0     864
+
+=================================================================
+AUC-ROC POR CLASE
+=================================================================
+   Monofasica-A              0.9935
+   Monofasica-B              0.9997
+   Monofasica-C              0.9998
+   Bifasica-AB               1.0000
+   Bifasica-AC               0.9999
+   Bifasica-BC               0.9999
+   Trifasica-tierra          0.9982
+   FaseFase-AB               0.9997
+   FaseFase-AC               1.0000
+   FaseFase-BC               1.0000
+   Trifasica-sin-tierra      0.9998
+   Espira-espira             0.9994
+   Devanado-devanado         1.0000
+   MACRO AVERAGE             0.9992
+
+=================================================================
+IMPORTANCIA DE FEATURES (agrupada por dimensión del tensor)
+=================================================================
+
+  Por componente de secuencia:
+    I0        : 0.2594  (25.9%)
+    I1        : 0.2339  (23.4%)
+    I2        : 0.2349  (23.5%)
+    I2/I0     : 0.2718  (27.2%)
+
+  Por tipo de feature:
+    RMS           : 0.2033  (20.3%)
+    Entropy       : 0.0998  (10.0%)
+    E_2harm       : 0.1413  (14.1%)
+    Skewness      : 0.1886  (18.9%)
+    Slope         : 0.1091  (10.9%) ← inter-ventana
+    Accel         : 0.0866  (8.7%) ← inter-ventana
+    Relative      : 0.0917  (9.2%) ← inter-ventana
+    Curvature     : 0.0796  (8.0%) ← inter-ventana
+
+  Intra-ventana total: 0.6330 (63.3%)
+  Inter-ventana total: 0.3670 (36.7%)
+  → Si inter > 25%: la dinámica temporal justifica el tensor
+
+  Top 10 features individuales más importantes:
+     1. I2/I0/Skewness/ventana2: 0.0123
+     3. I2/I0/Skewness/ventana3: 0.0108
+     4. I0/RMS/ventana7: 0.0107
+     5. I2/I0/RMS/ventana4: 0.0102
+     6. I0/RMS/ventana2: 0.0096
+     7. I2/I0/Skewness/ventana5: 0.0096
+     8. I1/E_2harm/ventana6: 0.0096
+     9. I2/I0/RMS/ventana5: 0.0093
+    10. I2/E_2harm/ventana6: 0.0092
+
+=================================================================
+ANÁLISIS ESPECÍFICO — ESPIRA-ESPIRA vs MONOFÁSICA-A
+=================================================================
+   Accuracy binario (solo estas 2 clases): 99.12%
+   Support Monofásica-A: 432
+   Support Espira-Espira: 1728
+
+=================================================================
+CROSS-VALIDATION 5-FOLD
+=================================================================
+   Fold 1: Acc=99.62%  F1=99.62%
+   Fold 2: Acc=99.40%  F1=99.40%
+   Fold 3: Acc=99.41%  F1=99.41%
+   Fold 4: Acc=99.35%  F1=99.34%
+   Fold 5: Acc=99.43%  F1=99.43%
+   MEDIA: Acc=99.44% ± 0.09%  F1=99.44% ± 0.09%
+
+💾 results\02_rf_results.json
+(.venv) PS E:\TransformerFaultDetection> & e:\TransformerFaultDetection\.venv\Scripts\python.exe e:/TransformerFaultDetection/scripts/03_method_cnn.py
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.7950 - loss: 0.5301 - val_accuracy: 0.8465 - val_loss: 0.4138 - learning_rate: 0.0010
+Epoch 29/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 23ms/step - accuracy: 0.7964 - loss: 0.5287 - val_accuracy: 0.8319 - val_loss: 0.4314 - learning_rate: 0.0010
+Epoch 30/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 12s 31ms/step - accuracy: 0.7969 - loss: 0.5265 - val_accuracy: 0.8307 - val_loss: 0.4279 - learning_rate: 0.0010
+Epoch 31/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 11s 29ms/step - accuracy: 0.7986 - loss: 0.5199 - val_accuracy: 0.8431 - val_loss: 0.4177 - learning_rate: 0.0010
+Epoch 32/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8034 - loss: 0.5129 - val_accuracy: 0.8530 - val_loss: 0.3909 - learning_rate: 0.0010
+Epoch 33/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 23ms/step - accuracy: 0.8040 - loss: 0.5099 - val_accuracy: 0.8375 - val_loss: 0.4241 - learning_rate: 0.0010
+Epoch 34/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 24ms/step - accuracy: 0.8052 - loss: 0.5110 - val_accuracy: 0.8397 - val_loss: 0.4152 - learning_rate: 0.0010
+Epoch 35/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8091 - loss: 0.5026 - val_accuracy: 0.8407 - val_loss: 0.4159 - learning_rate: 0.0010
+Epoch 36/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 23ms/step - accuracy: 0.8075 - loss: 0.4975 - val_accuracy: 0.8456 - val_loss: 0.4075 - learning_rate: 0.0010
+Epoch 37/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 23ms/step - accuracy: 0.8090 - loss: 0.5006 - val_accuracy: 0.8412 - val_loss: 0.4074 - learning_rate: 0.0010
+Epoch 38/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 25ms/step - accuracy: 0.8063 - loss: 0.5011 - val_accuracy: 0.8526 - val_loss: 0.3916 - learning_rate: 0.0010
+Epoch 39/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 24ms/step - accuracy: 0.8134 - loss: 0.4908 - val_accuracy: 0.8429 - val_loss: 0.4043 - learning_rate: 0.0010
+Epoch 40/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 23ms/step - accuracy: 0.8151 - loss: 0.4783 - val_accuracy: 0.8640 - val_loss: 0.3731 - learning_rate: 5.0000e-04
+Epoch 41/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8218 - loss: 0.4694 - val_accuracy: 0.8625 - val_loss: 0.3617 - learning_rate: 5.0000e-04
+Epoch 42/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8257 - loss: 0.4606 - val_accuracy: 0.8661 - val_loss: 0.3580 - learning_rate: 5.0000e-04
+Epoch 43/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 23ms/step - accuracy: 0.8198 - loss: 0.4697 - val_accuracy: 0.8673 - val_loss: 0.3648 - learning_rate: 5.0000e-04
+Epoch 44/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8231 - loss: 0.4608 - val_accuracy: 0.8698 - val_loss: 0.3549 - learning_rate: 5.0000e-04
+Epoch 45/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 21ms/step - accuracy: 0.8253 - loss: 0.4585 - val_accuracy: 0.8652 - val_loss: 0.3548 - learning_rate: 5.0000e-04
+Epoch 46/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 24ms/step - accuracy: 0.8263 - loss: 0.4536 - val_accuracy: 0.8635 - val_loss: 0.3545 - learning_rate: 5.0000e-04
+Epoch 47/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 23ms/step - accuracy: 0.8257 - loss: 0.4573 - val_accuracy: 0.8664 - val_loss: 0.3521 - learning_rate: 5.0000e-04
+Epoch 48/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8274 - loss: 0.4528 - val_accuracy: 0.8684 - val_loss: 0.3520 - learning_rate: 5.0000e-04
+Epoch 49/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8248 - loss: 0.4584 - val_accuracy: 0.8705 - val_loss: 0.3456 - learning_rate: 5.0000e-04
+Epoch 50/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 24ms/step - accuracy: 0.8272 - loss: 0.4556 - val_accuracy: 0.8671 - val_loss: 0.3524 - learning_rate: 5.0000e-04
+Epoch 51/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 25ms/step - accuracy: 0.8261 - loss: 0.4533 - val_accuracy: 0.8705 - val_loss: 0.3518 - learning_rate: 5.0000e-04
+Epoch 52/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 24ms/step - accuracy: 0.8287 - loss: 0.4488 - val_accuracy: 0.8700 - val_loss: 0.3418 - learning_rate: 5.0000e-04
+Epoch 53/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8267 - loss: 0.4531 - val_accuracy: 0.8700 - val_loss: 0.3432 - learning_rate: 5.0000e-04
+Epoch 54/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 21ms/step - accuracy: 0.8316 - loss: 0.4462 - val_accuracy: 0.8683 - val_loss: 0.3465 - learning_rate: 5.0000e-04
+Epoch 55/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8302 - loss: 0.4411 - val_accuracy: 0.8684 - val_loss: 0.3532 - learning_rate: 5.0000e-04
+Epoch 56/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8333 - loss: 0.4423 - val_accuracy: 0.8724 - val_loss: 0.3450 - learning_rate: 5.0000e-04
+Epoch 57/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 23ms/step - accuracy: 0.8309 - loss: 0.4441 - val_accuracy: 0.8773 - val_loss: 0.3372 - learning_rate: 5.0000e-04
+Epoch 58/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 21ms/step - accuracy: 0.8329 - loss: 0.4424 - val_accuracy: 0.8691 - val_loss: 0.3431 - learning_rate: 5.0000e-04
+Epoch 59/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 24ms/step - accuracy: 0.8313 - loss: 0.4456 - val_accuracy: 0.8683 - val_loss: 0.3462 - learning_rate: 5.0000e-04
+Epoch 60/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 23ms/step - accuracy: 0.8326 - loss: 0.4436 - val_accuracy: 0.8555 - val_loss: 0.3697 - learning_rate: 5.0000e-04
+Epoch 61/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8314 - loss: 0.4443 - val_accuracy: 0.8759 - val_loss: 0.3345 - learning_rate: 5.0000e-04
+Epoch 62/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 23ms/step - accuracy: 0.8336 - loss: 0.4397 - val_accuracy: 0.8790 - val_loss: 0.3309 - learning_rate: 5.0000e-04
+Epoch 63/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 23ms/step - accuracy: 0.8316 - loss: 0.4421 - val_accuracy: 0.8793 - val_loss: 0.3334 - learning_rate: 5.0000e-04
+Epoch 64/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8346 - loss: 0.4381 - val_accuracy: 0.8724 - val_loss: 0.3346 - learning_rate: 5.0000e-04
+Epoch 65/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 23ms/step - accuracy: 0.8378 - loss: 0.4325 - val_accuracy: 0.8780 - val_loss: 0.3267 - learning_rate: 5.0000e-04
+Epoch 66/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8332 - loss: 0.4395 - val_accuracy: 0.8703 - val_loss: 0.3362 - learning_rate: 5.0000e-04
+Epoch 67/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8360 - loss: 0.4288 - val_accuracy: 0.8751 - val_loss: 0.3302 - learning_rate: 5.0000e-04
+Epoch 68/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8347 - loss: 0.4389 - val_accuracy: 0.8746 - val_loss: 0.3287 - learning_rate: 5.0000e-04
+Epoch 69/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 11s 31ms/step - accuracy: 0.8346 - loss: 0.4333 - val_accuracy: 0.8816 - val_loss: 0.3262 - learning_rate: 5.0000e-04
+Epoch 70/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 24ms/step - accuracy: 0.8363 - loss: 0.4308 - val_accuracy: 0.8758 - val_loss: 0.3293 - learning_rate: 5.0000e-04
+Epoch 71/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 23ms/step - accuracy: 0.8390 - loss: 0.4257 - val_accuracy: 0.8800 - val_loss: 0.3226 - learning_rate: 5.0000e-04
+Epoch 72/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 10s 26ms/step - accuracy: 0.8351 - loss: 0.4335 - val_accuracy: 0.8812 - val_loss: 0.3254 - learning_rate: 5.0000e-04
+Epoch 73/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 23ms/step - accuracy: 0.8363 - loss: 0.4283 - val_accuracy: 0.8792 - val_loss: 0.3289 - learning_rate: 5.0000e-04
+Epoch 74/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8357 - loss: 0.4299 - val_accuracy: 0.8766 - val_loss: 0.3303 - learning_rate: 5.0000e-04
+Epoch 75/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8395 - loss: 0.4210 - val_accuracy: 0.8734 - val_loss: 0.3280 - learning_rate: 5.0000e-04
+Epoch 76/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8374 - loss: 0.4278 - val_accuracy: 0.8770 - val_loss: 0.3238 - learning_rate: 5.0000e-04
+Epoch 77/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8357 - loss: 0.4305 - val_accuracy: 0.8756 - val_loss: 0.3311 - learning_rate: 5.0000e-04
+Epoch 78/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8394 - loss: 0.4229 - val_accuracy: 0.8809 - val_loss: 0.3212 - learning_rate: 5.0000e-04
+Epoch 79/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8373 - loss: 0.4277 - val_accuracy: 0.8754 - val_loss: 0.3323 - learning_rate: 5.0000e-04
+Epoch 80/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 25ms/step - accuracy: 0.8392 - loss: 0.4234 - val_accuracy: 0.8802 - val_loss: 0.3197 - learning_rate: 5.0000e-04
+Epoch 81/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 10s 28ms/step - accuracy: 0.8431 - loss: 0.4163 - val_accuracy: 0.8681 - val_loss: 0.3360 - learning_rate: 5.0000e-04
+Epoch 82/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 11s 31ms/step - accuracy: 0.8409 - loss: 0.4221 - val_accuracy: 0.8833 - val_loss: 0.3136 - learning_rate: 5.0000e-04
+Epoch 83/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 12s 32ms/step - accuracy: 0.8382 - loss: 0.4243 - val_accuracy: 0.8749 - val_loss: 0.3295 - learning_rate: 5.0000e-04
+Epoch 84/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 10s 26ms/step - accuracy: 0.8406 - loss: 0.4211 - val_accuracy: 0.8839 - val_loss: 0.3140 - learning_rate: 5.0000e-04
+Epoch 85/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8428 - loss: 0.4192 - val_accuracy: 0.8785 - val_loss: 0.3233 - learning_rate: 5.0000e-04
+Epoch 86/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8402 - loss: 0.4206 - val_accuracy: 0.8827 - val_loss: 0.3138 - learning_rate: 5.0000e-04
+Epoch 87/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8419 - loss: 0.4168 - val_accuracy: 0.8701 - val_loss: 0.3364 - learning_rate: 5.0000e-04
+Epoch 88/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 20ms/step - accuracy: 0.8402 - loss: 0.4177 - val_accuracy: 0.8853 - val_loss: 0.3137 - learning_rate: 5.0000e-04
+Epoch 89/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 20ms/step - accuracy: 0.8438 - loss: 0.4126 - val_accuracy: 0.8783 - val_loss: 0.3192 - learning_rate: 5.0000e-04
+Epoch 90/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8463 - loss: 0.4100 - val_accuracy: 0.8853 - val_loss: 0.3053 - learning_rate: 2.5000e-04
+Epoch 91/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8455 - loss: 0.4051 - val_accuracy: 0.8800 - val_loss: 0.3174 - learning_rate: 2.5000e-04
+Epoch 92/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8475 - loss: 0.4022 - val_accuracy: 0.8844 - val_loss: 0.3091 - learning_rate: 2.5000e-04
+Epoch 93/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8455 - loss: 0.4090 - val_accuracy: 0.8797 - val_loss: 0.3135 - learning_rate: 2.5000e-04
+Epoch 94/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8492 - loss: 0.4023 - val_accuracy: 0.8816 - val_loss: 0.3098 - learning_rate: 2.5000e-04
+Epoch 95/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8451 - loss: 0.4045 - val_accuracy: 0.8827 - val_loss: 0.3085 - learning_rate: 2.5000e-04
+Epoch 96/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8494 - loss: 0.3979 - val_accuracy: 0.8850 - val_loss: 0.3057 - learning_rate: 2.5000e-04
+Epoch 97/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8474 - loss: 0.3969 - val_accuracy: 0.8899 - val_loss: 0.2983 - learning_rate: 2.5000e-04
+Epoch 98/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8508 - loss: 0.3956 - val_accuracy: 0.8873 - val_loss: 0.3029 - learning_rate: 2.5000e-04
+Epoch 99/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8489 - loss: 0.3938 - val_accuracy: 0.8843 - val_loss: 0.3048 - learning_rate: 2.5000e-04
+Epoch 100/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 20ms/step - accuracy: 0.8441 - loss: 0.4066 - val_accuracy: 0.8887 - val_loss: 0.3024 - learning_rate: 2.5000e-04
+Epoch 101/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8490 - loss: 0.4020 - val_accuracy: 0.8861 - val_loss: 0.3013 - learning_rate: 2.5000e-04
+Epoch 102/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8491 - loss: 0.3973 - val_accuracy: 0.8861 - val_loss: 0.3055 - learning_rate: 2.5000e-04
+Epoch 103/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8491 - loss: 0.3987 - val_accuracy: 0.8884 - val_loss: 0.3009 - learning_rate: 2.5000e-04
+Epoch 104/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8507 - loss: 0.3937 - val_accuracy: 0.8863 - val_loss: 0.3034 - learning_rate: 2.5000e-04
+Epoch 105/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 20ms/step - accuracy: 0.8507 - loss: 0.3940 - val_accuracy: 0.8885 - val_loss: 0.2982 - learning_rate: 1.2500e-04
+Epoch 106/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 21ms/step - accuracy: 0.8538 - loss: 0.3864 - val_accuracy: 0.8870 - val_loss: 0.2972 - learning_rate: 1.2500e-04
+Epoch 107/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8543 - loss: 0.3866 - val_accuracy: 0.8907 - val_loss: 0.2947 - learning_rate: 1.2500e-04
+Epoch 108/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8516 - loss: 0.3919 - val_accuracy: 0.8868 - val_loss: 0.2991 - learning_rate: 1.2500e-04
+Epoch 109/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 20ms/step - accuracy: 0.8522 - loss: 0.3918 - val_accuracy: 0.8909 - val_loss: 0.2947 - learning_rate: 1.2500e-04
+Epoch 110/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8523 - loss: 0.3929 - val_accuracy: 0.8890 - val_loss: 0.2959 - learning_rate: 1.2500e-04
+Epoch 111/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8557 - loss: 0.3854 - val_accuracy: 0.8865 - val_loss: 0.2993 - learning_rate: 1.2500e-04
+Epoch 112/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8506 - loss: 0.3942 - val_accuracy: 0.8855 - val_loss: 0.3018 - learning_rate: 1.2500e-04
+Epoch 113/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8521 - loss: 0.3887 - val_accuracy: 0.8896 - val_loss: 0.2955 - learning_rate: 1.2500e-04
+Epoch 114/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8526 - loss: 0.3885 - val_accuracy: 0.8911 - val_loss: 0.2956 - learning_rate: 1.2500e-04
+Epoch 115/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8538 - loss: 0.3887 - val_accuracy: 0.8902 - val_loss: 0.2955 - learning_rate: 6.2500e-05
+Epoch 116/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8557 - loss: 0.3858 - val_accuracy: 0.8928 - val_loss: 0.2933 - learning_rate: 6.2500e-05
+Epoch 117/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8554 - loss: 0.3827 - val_accuracy: 0.8902 - val_loss: 0.2942 - learning_rate: 6.2500e-05
+Epoch 118/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8523 - loss: 0.3918 - val_accuracy: 0.8894 - val_loss: 0.2934 - learning_rate: 6.2500e-05
+Epoch 119/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8531 - loss: 0.3838 - val_accuracy: 0.8906 - val_loss: 0.2923 - learning_rate: 6.2500e-05
+Epoch 120/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8564 - loss: 0.3828 - val_accuracy: 0.8904 - val_loss: 0.2936 - learning_rate: 6.2500e-05
+Epoch 121/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8534 - loss: 0.3879 - val_accuracy: 0.8892 - val_loss: 0.2951 - learning_rate: 6.2500e-05
+Epoch 122/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8530 - loss: 0.3895 - val_accuracy: 0.8899 - val_loss: 0.2945 - learning_rate: 6.2500e-05
+Epoch 123/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8571 - loss: 0.3816 - val_accuracy: 0.8909 - val_loss: 0.2924 - learning_rate: 6.2500e-05
+Epoch 124/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8547 - loss: 0.3823 - val_accuracy: 0.8918 - val_loss: 0.2915 - learning_rate: 6.2500e-05
+Epoch 125/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8550 - loss: 0.3837 - val_accuracy: 0.8918 - val_loss: 0.2933 - learning_rate: 6.2500e-05
+Epoch 126/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8566 - loss: 0.3772 - val_accuracy: 0.8913 - val_loss: 0.2931 - learning_rate: 6.2500e-05
+Epoch 127/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 26ms/step - accuracy: 0.8576 - loss: 0.3817 - val_accuracy: 0.8904 - val_loss: 0.2924 - learning_rate: 6.2500e-05
+Epoch 128/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 10s 26ms/step - accuracy: 0.8562 - loss: 0.3828 - val_accuracy: 0.8919 - val_loss: 0.2912 - learning_rate: 6.2500e-05
+Epoch 129/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 24ms/step - accuracy: 0.8557 - loss: 0.3834 - val_accuracy: 0.8896 - val_loss: 0.2952 - learning_rate: 6.2500e-05
+Epoch 130/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 20ms/step - accuracy: 0.8551 - loss: 0.3827 - val_accuracy: 0.8897 - val_loss: 0.2926 - learning_rate: 6.2500e-05
+Epoch 131/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 20ms/step - accuracy: 0.8546 - loss: 0.3844 - val_accuracy: 0.8923 - val_loss: 0.2904 - learning_rate: 6.2500e-05
+
+⏱️  17.4 minutos  |  131 épocas
+
+=================================================================
+RESULTADOS GLOBALES — CNN-2D
+=================================================================
+   Accuracy:              89.8420%
+   F1 weighted:           87.4078%
+   F1 macro:              86.9283%
+   F1 micro:              89.8420%
+   AUC-ROC macro:         0.9878
+   AUC-ROC weighted:      0.9839
+   Latencia/muestra:      0.6097 ms
+   Tiempo entrenamiento:  1044.2003 s
+   Épocas ejecutadas:     131
+   Parámetros del modelo: 25,069
+
+=================================================================
+CLASSIFICATION REPORT POR CLASE
+=================================================================
+                      precision    recall  f1-score   support
+
+        Monofasica-A       1.00      0.01      0.02       432
+        Monofasica-B       0.92      0.81      0.86       432
+        Monofasica-C       0.97      0.93      0.95       432
+         Bifasica-AB       0.96      0.97      0.96       432
+         Bifasica-AC       0.93      0.99      0.96       432
+         Bifasica-BC       0.98      0.91      0.94       432
+    Trifasica-tierra       0.95      0.95      0.95       432
+         FaseFase-AB       0.98      0.89      0.93       432
+         FaseFase-AC       0.90      0.98      0.94       432
+         FaseFase-BC       0.98      0.99      0.99       432
+Trifasica-sin-tierra       0.95      0.95      0.95       432
+       Espira-espira       0.77      0.98      0.86      1728
+   Devanado-devanado       0.97      0.98      0.98       864
+
+            accuracy                           0.90      7344
+           macro avg       0.94      0.87      0.87      7344
+        weighted avg       0.91      0.90      0.87      7344
+
+=================================================================
+CONFUSION MATRIX
+=================================================================
+                        Monofa  Monofa  Monofa  Bifasi  Bifasi  Bifasi  Trifas  FaseFa  FaseFa  FaseFa  Trifas  Espira  Devana
+  Monofasica-A               5       0       4       0       0       0       0       0       0       0       1     416       6
+  Monofasica-B               0     352       4       0       0       0       0       0       0       0       0      74       2
+  Monofasica-C               0      17     403       0       0       0       0       0       0       0       0      10       2
+  Bifasica-AB                0       0       0     417      10       5       0       0       0       0       0       0       0
+  Bifasica-AC                0       0       0       4     427       1       0       0       0       0       0       0       0
+  Bifasica-BC                0       0       0      15      22     395       0       0       0       0       0       0       0
+  Trifasica-tierra           0       0       0       0       0       3     409       0       0       0      20       0       0
+  FaseFase-AB                0       0       0       0       0       0       0     384      43       4       1       0       0
+  FaseFase-AC                0       0       0       0       0       0       0       6     425       1       0       0       0
+  FaseFase-BC                0       0       0       0       0       0       0       0       4     428       0       0       0
+  Trifasica-sin-tierra       0       0       0       0       0       0      20       0       0       2     410       0       0
+  Espira-espira              0      14       4       0       0       0       0       0       0       0       0    1697      13
+  Devanado-devanado          0       0       0       0       0       0       0       0       0       0       0      18     846
+
+=================================================================
+AUC-ROC POR CLASE
+=================================================================
+   Monofasica-A              0.8908
+   Monofasica-B              0.9942
+   Monofasica-C              0.9989
+   Bifasica-AB               0.9995
+   Bifasica-AC               0.9996
+   Bifasica-BC               0.9992
+   Trifasica-tierra          0.9993
+   FaseFase-AB               0.9996
+   FaseFase-AC               0.9996
+   FaseFase-BC               0.9998
+   Trifasica-sin-tierra      0.9991
+   Espira-espira             0.9616
+   Devanado-devanado         0.9997
+   MACRO AVERAGE             0.9878
+
+=================================================================
+ANÁLISIS ESPECÍFICO — ESPIRA-ESPIRA vs MONOFÁSICA-A
+=================================================================
+   Accuracy binario: 78.80%
+
+=================================================================
+CURVAS DE ENTRENAMIENTO (resumen)
+=================================================================
+   Mejor val_accuracy: 89.28% (época 116)
+   Train accuracy final: 85.46%
+   Val accuracy final:   89.23%
+
+=================================================================
+VERIFICACIÓN DE CONSISTENCIA
+=================================================================
+   Accuracy:   89.8420%
+   Diferencia: 2.4343 puntos
+   ⚠️  Diferencia > 1 punto — dataset desbalanceado afecta la métrica
+
+💾 results\03_cnn_results.json
+(.venv) PS E:\TransformerFaultDetection> & e:\TransformerFaultDetection\.venv\Scripts\python.exe e:/TransformerFaultDetection/scripts/04_method_lstm.py
+2026-07-29 18:54:25.284908: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-07-29 18:54:40.824511: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+=================================================================
+MÉTODO 4 — LSTM SOBRE SECUENCIA TEMPORAL DEL TENSOR THEC-D
+   TensorFlow: 2.17.1  |  Keras: 3.11.1
+=================================================================
+
+📥 Cargando: data\processed\tensor_thec_d.pkl
+   X (timesteps, features): (36720, 8, 32)  |  y: (36720,)
+   Interpretación: 8 ventanas temporales × 32 features/ventana
+   Cada timestep = firma espectral de un medio ciclo de 60Hz
+   Train: 29,376  |  Test: 7,344
+   Input shape: (8, 32)  (timesteps=8, features=32)
+
+2026-07-29 18:55:22.112268: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Model: "sequential"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                         ┃ Output Shape                ┃         Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│ lstm (LSTM)                          │ (None, 8, 64)               │          24,832 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ lstm_1 (LSTM)                        │ (None, 32)                  │          12,416 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense (Dense)                        │ (None, 64)                  │           2,112 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout (Dropout)                    │ (None, 64)                  │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense_1 (Dense)                      │ (None, 13)                  │             845 │
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
+ Total params: 40,205 (157.05 KB)
+ Trainable params: 40,205 (157.05 KB)
+ Non-trainable params: 0 (0.00 B)
+
+🧠 Parámetros totales: 40,205
+
+🚀 Entrenando LSTM...
+Epoch 1/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 30s 30ms/step - accuracy: 0.3469 - loss: 1.8034 - val_accuracy: 0.4859 - val_loss: 1.2404 - learning_rate: 0.0010
+Epoch 2/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 25ms/step - accuracy: 0.4674 - loss: 1.3310 - val_accuracy: 0.5483 - val_loss: 1.0985 - learning_rate: 0.0010
+Epoch 3/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 25ms/step - accuracy: 0.5182 - loss: 1.1982 - val_accuracy: 0.6241 - val_loss: 0.9775 - learning_rate: 0.0010
+Epoch 4/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 20ms/step - accuracy: 0.5619 - loss: 1.1239 - val_accuracy: 0.6523 - val_loss: 0.9075 - learning_rate: 0.0010
+Epoch 5/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 10s 26ms/step - accuracy: 0.5884 - loss: 1.0498 - val_accuracy: 0.6668 - val_loss: 0.8660 - learning_rate: 0.0010
+Epoch 6/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.6076 - loss: 1.0104 - val_accuracy: 0.6855 - val_loss: 0.8053 - learning_rate: 0.0010
+Epoch 7/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.6246 - loss: 0.9669 - val_accuracy: 0.7066 - val_loss: 0.7731 - learning_rate: 0.0010
+Epoch 8/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.6403 - loss: 0.9241 - val_accuracy: 0.7257 - val_loss: 0.7202 - learning_rate: 0.0010
+Epoch 9/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.6527 - loss: 0.8989 - val_accuracy: 0.7248 - val_loss: 0.7101 - learning_rate: 0.0010
+Epoch 10/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.6683 - loss: 0.8626 - val_accuracy: 0.7338 - val_loss: 0.6752 - learning_rate: 0.0010
+Epoch 11/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.6749 - loss: 0.8382 - val_accuracy: 0.7497 - val_loss: 0.6517 - learning_rate: 0.0010
+Epoch 12/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.6868 - loss: 0.8140 - val_accuracy: 0.7505 - val_loss: 0.6426 - learning_rate: 0.0010
+Epoch 13/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.6941 - loss: 0.7942 - val_accuracy: 0.7621 - val_loss: 0.6097 - learning_rate: 0.0010
+Epoch 14/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.6995 - loss: 0.7786 - val_accuracy: 0.7754 - val_loss: 0.5936 - learning_rate: 0.0010
+Epoch 15/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.7056 - loss: 0.7608 - val_accuracy: 0.7730 - val_loss: 0.5843 - learning_rate: 0.0010
+Epoch 16/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 20ms/step - accuracy: 0.7116 - loss: 0.7514 - val_accuracy: 0.7859 - val_loss: 0.5679 - learning_rate: 0.0010
+Epoch 17/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 23ms/step - accuracy: 0.7157 - loss: 0.7336 - val_accuracy: 0.7813 - val_loss: 0.5766 - learning_rate: 0.0010
+Epoch 18/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 10s 26ms/step - accuracy: 0.7236 - loss: 0.7152 - val_accuracy: 0.7927 - val_loss: 0.5429 - learning_rate: 0.0010
+Epoch 19/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 23ms/step - accuracy: 0.7316 - loss: 0.7019 - val_accuracy: 0.7936 - val_loss: 0.5225 - learning_rate: 0.0010
+Epoch 20/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.7293 - loss: 0.7009 - val_accuracy: 0.7908 - val_loss: 0.5291 - learning_rate: 0.0010
+Epoch 21/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 20ms/step - accuracy: 0.7340 - loss: 0.6877 - val_accuracy: 0.7910 - val_loss: 0.5173 - learning_rate: 0.0010
+Epoch 22/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 20ms/step - accuracy: 0.7363 - loss: 0.6779 - val_accuracy: 0.7985 - val_loss: 0.5064 - learning_rate: 0.0010
+Epoch 23/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.7448 - loss: 0.6659 - val_accuracy: 0.8004 - val_loss: 0.5066 - learning_rate: 0.0010
+Epoch 24/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 24ms/step - accuracy: 0.7468 - loss: 0.6541 - val_accuracy: 0.8074 - val_loss: 0.4918 - learning_rate: 0.0010
+Epoch 25/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 25ms/step - accuracy: 0.7500 - loss: 0.6412 - val_accuracy: 0.8138 - val_loss: 0.4820 - learning_rate: 0.0010
+Epoch 26/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.7569 - loss: 0.6344 - val_accuracy: 0.8165 - val_loss: 0.4799 - learning_rate: 0.0010
+Epoch 27/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.7526 - loss: 0.6369 - val_accuracy: 0.8196 - val_loss: 0.4814 - learning_rate: 0.0010
+Epoch 28/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 6s 17ms/step - accuracy: 0.7566 - loss: 0.6305 - val_accuracy: 0.8138 - val_loss: 0.4802 - learning_rate: 0.0010
+Epoch 29/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 6s 17ms/step - accuracy: 0.7557 - loss: 0.6269 - val_accuracy: 0.8152 - val_loss: 0.4717 - learning_rate: 0.0010
+Epoch 30/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 6s 17ms/step - accuracy: 0.7609 - loss: 0.6189 - val_accuracy: 0.8162 - val_loss: 0.4670 - learning_rate: 0.0010
+Epoch 31/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 6s 17ms/step - accuracy: 0.7615 - loss: 0.6093 - val_accuracy: 0.8179 - val_loss: 0.4888 - learning_rate: 0.0010
+Epoch 32/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 6s 17ms/step - accuracy: 0.7653 - loss: 0.6109 - val_accuracy: 0.8222 - val_loss: 0.4649 - learning_rate: 0.0010
+Epoch 33/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 6s 17ms/step - accuracy: 0.7661 - loss: 0.6059 - val_accuracy: 0.8181 - val_loss: 0.4622 - learning_rate: 0.0010
+Epoch 34/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 6s 17ms/step - accuracy: 0.7702 - loss: 0.5963 - val_accuracy: 0.8237 - val_loss: 0.4584 - learning_rate: 0.0010
+Epoch 35/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 6s 17ms/step - accuracy: 0.7754 - loss: 0.5830 - val_accuracy: 0.8305 - val_loss: 0.4413 - learning_rate: 0.0010
+Epoch 36/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 6s 17ms/step - accuracy: 0.7777 - loss: 0.5757 - val_accuracy: 0.8317 - val_loss: 0.4278 - learning_rate: 0.0010
+Epoch 37/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 6s 17ms/step - accuracy: 0.7794 - loss: 0.5766 - val_accuracy: 0.8429 - val_loss: 0.4163 - learning_rate: 0.0010
+Epoch 38/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 6s 17ms/step - accuracy: 0.7820 - loss: 0.5702 - val_accuracy: 0.8453 - val_loss: 0.4051 - learning_rate: 0.0010
+Epoch 39/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 6s 17ms/step - accuracy: 0.7873 - loss: 0.5617 - val_accuracy: 0.8547 - val_loss: 0.3928 - learning_rate: 0.0010
+Epoch 40/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 6s 17ms/step - accuracy: 0.7944 - loss: 0.5449 - val_accuracy: 0.8567 - val_loss: 0.3960 - learning_rate: 0.0010
+Epoch 41/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.7992 - loss: 0.5367 - val_accuracy: 0.8560 - val_loss: 0.3823 - learning_rate: 0.0010
+Epoch 42/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 20ms/step - accuracy: 0.8001 - loss: 0.5293 - val_accuracy: 0.8598 - val_loss: 0.3820 - learning_rate: 0.0010
+Epoch 43/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 10s 26ms/step - accuracy: 0.8037 - loss: 0.5223 - val_accuracy: 0.8645 - val_loss: 0.3612 - learning_rate: 0.0010
+Epoch 44/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 23ms/step - accuracy: 0.8065 - loss: 0.5159 - val_accuracy: 0.8635 - val_loss: 0.3538 - learning_rate: 0.0010
+Epoch 45/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8124 - loss: 0.5057 - val_accuracy: 0.8715 - val_loss: 0.3485 - learning_rate: 0.0010
+Epoch 46/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 21ms/step - accuracy: 0.8126 - loss: 0.5078 - val_accuracy: 0.8703 - val_loss: 0.3425 - learning_rate: 0.0010
+Epoch 47/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8127 - loss: 0.4991 - val_accuracy: 0.8746 - val_loss: 0.3373 - learning_rate: 0.0010
+Epoch 48/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 10s 28ms/step - accuracy: 0.8171 - loss: 0.4936 - val_accuracy: 0.8753 - val_loss: 0.3353 - learning_rate: 0.0010
+Epoch 49/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 10s 28ms/step - accuracy: 0.8196 - loss: 0.4826 - val_accuracy: 0.8725 - val_loss: 0.3262 - learning_rate: 0.0010
+Epoch 50/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 10s 26ms/step - accuracy: 0.8202 - loss: 0.4871 - val_accuracy: 0.8729 - val_loss: 0.3258 - learning_rate: 0.0010
+Epoch 51/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 23ms/step - accuracy: 0.8219 - loss: 0.4801 - val_accuracy: 0.8758 - val_loss: 0.3281 - learning_rate: 0.0010
+Epoch 52/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 20ms/step - accuracy: 0.8224 - loss: 0.4764 - val_accuracy: 0.8795 - val_loss: 0.3284 - learning_rate: 0.0010
+Epoch 53/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 6s 17ms/step - accuracy: 0.8246 - loss: 0.4734 - val_accuracy: 0.8746 - val_loss: 0.3245 - learning_rate: 0.0010
+Epoch 54/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 6s 17ms/step - accuracy: 0.8268 - loss: 0.4705 - val_accuracy: 0.8831 - val_loss: 0.3124 - learning_rate: 0.0010
+Epoch 55/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 6s 18ms/step - accuracy: 0.8268 - loss: 0.4654 - val_accuracy: 0.8790 - val_loss: 0.3238 - learning_rate: 0.0010
+Epoch 56/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 6s 17ms/step - accuracy: 0.8247 - loss: 0.4717 - val_accuracy: 0.8819 - val_loss: 0.3230 - learning_rate: 0.0010
+Epoch 57/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8322 - loss: 0.4513 - val_accuracy: 0.8780 - val_loss: 0.3237 - learning_rate: 0.0010
+Epoch 58/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 6s 17ms/step - accuracy: 0.8314 - loss: 0.4558 - val_accuracy: 0.8844 - val_loss: 0.3067 - learning_rate: 0.0010
+Epoch 59/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 6s 17ms/step - accuracy: 0.8349 - loss: 0.4500 - val_accuracy: 0.8850 - val_loss: 0.3068 - learning_rate: 0.0010
+Epoch 60/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8334 - loss: 0.4547 - val_accuracy: 0.8873 - val_loss: 0.3062 - learning_rate: 0.0010
+Epoch 61/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8316 - loss: 0.4546 - val_accuracy: 0.8838 - val_loss: 0.3063 - learning_rate: 0.0010
+Epoch 62/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8371 - loss: 0.4402 - val_accuracy: 0.8846 - val_loss: 0.3077 - learning_rate: 0.0010
+Epoch 63/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 6s 17ms/step - accuracy: 0.8346 - loss: 0.4444 - val_accuracy: 0.8860 - val_loss: 0.3060 - learning_rate: 0.0010
+Epoch 64/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8384 - loss: 0.4360 - val_accuracy: 0.8858 - val_loss: 0.3042 - learning_rate: 0.0010
+Epoch 65/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 10s 27ms/step - accuracy: 0.8378 - loss: 0.4371 - val_accuracy: 0.8889 - val_loss: 0.2979 - learning_rate: 0.0010
+Epoch 66/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8407 - loss: 0.4345 - val_accuracy: 0.8865 - val_loss: 0.2909 - learning_rate: 0.0010
+Epoch 67/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 20ms/step - accuracy: 0.8403 - loss: 0.4281 - val_accuracy: 0.8901 - val_loss: 0.2940 - learning_rate: 0.0010
+Epoch 68/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 20ms/step - accuracy: 0.8438 - loss: 0.4228 - val_accuracy: 0.8930 - val_loss: 0.2953 - learning_rate: 0.0010
+Epoch 69/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8459 - loss: 0.4169 - val_accuracy: 0.8924 - val_loss: 0.2830 - learning_rate: 0.0010
+Epoch 70/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 21ms/step - accuracy: 0.8463 - loss: 0.4213 - val_accuracy: 0.8974 - val_loss: 0.2760 - learning_rate: 0.0010
+Epoch 71/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8425 - loss: 0.4228 - val_accuracy: 0.8914 - val_loss: 0.2932 - learning_rate: 0.0010
+Epoch 72/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 21ms/step - accuracy: 0.8442 - loss: 0.4162 - val_accuracy: 0.8943 - val_loss: 0.2915 - learning_rate: 0.0010
+Epoch 73/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8460 - loss: 0.4114 - val_accuracy: 0.8928 - val_loss: 0.2846 - learning_rate: 0.0010
+Epoch 74/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 23ms/step - accuracy: 0.8468 - loss: 0.4185 - val_accuracy: 0.8914 - val_loss: 0.2813 - learning_rate: 0.0010
+Epoch 75/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 20ms/step - accuracy: 0.8455 - loss: 0.4198 - val_accuracy: 0.8936 - val_loss: 0.2805 - learning_rate: 0.0010
+Epoch 76/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 21ms/step - accuracy: 0.8477 - loss: 0.4096 - val_accuracy: 0.8918 - val_loss: 0.2800 - learning_rate: 0.0010
+Epoch 77/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 21ms/step - accuracy: 0.8473 - loss: 0.4089 - val_accuracy: 0.8982 - val_loss: 0.2712 - learning_rate: 0.0010
+Epoch 78/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8505 - loss: 0.4027 - val_accuracy: 0.8957 - val_loss: 0.2693 - learning_rate: 0.0010
+Epoch 79/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8489 - loss: 0.4090 - val_accuracy: 0.8904 - val_loss: 0.2853 - learning_rate: 0.0010
+Epoch 80/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8473 - loss: 0.4083 - val_accuracy: 0.8960 - val_loss: 0.2743 - learning_rate: 0.0010
+Epoch 81/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8510 - loss: 0.4017 - val_accuracy: 0.8941 - val_loss: 0.2786 - learning_rate: 0.0010
+Epoch 82/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8511 - loss: 0.4013 - val_accuracy: 0.8979 - val_loss: 0.2820 - learning_rate: 0.0010
+Epoch 83/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8540 - loss: 0.3978 - val_accuracy: 0.8967 - val_loss: 0.2764 - learning_rate: 0.0010
+Epoch 84/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8499 - loss: 0.4006 - val_accuracy: 0.8904 - val_loss: 0.2833 - learning_rate: 0.0010
+Epoch 85/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 10s 27ms/step - accuracy: 0.8514 - loss: 0.3993 - val_accuracy: 0.8919 - val_loss: 0.2788 - learning_rate: 0.0010
+Epoch 86/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8606 - loss: 0.3716 - val_accuracy: 0.8982 - val_loss: 0.2689 - learning_rate: 5.0000e-04
+Epoch 87/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8666 - loss: 0.3588 - val_accuracy: 0.8974 - val_loss: 0.2681 - learning_rate: 5.0000e-04
+Epoch 88/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8643 - loss: 0.3613 - val_accuracy: 0.8987 - val_loss: 0.2593 - learning_rate: 5.0000e-04
+Epoch 89/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8661 - loss: 0.3565 - val_accuracy: 0.8969 - val_loss: 0.2639 - learning_rate: 5.0000e-04
+Epoch 90/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8635 - loss: 0.3631 - val_accuracy: 0.9013 - val_loss: 0.2554 - learning_rate: 5.0000e-04
+Epoch 91/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8672 - loss: 0.3545 - val_accuracy: 0.9025 - val_loss: 0.2577 - learning_rate: 5.0000e-04
+Epoch 92/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8691 - loss: 0.3546 - val_accuracy: 0.9044 - val_loss: 0.2531 - learning_rate: 5.0000e-04
+Epoch 93/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 21ms/step - accuracy: 0.8697 - loss: 0.3516 - val_accuracy: 0.9003 - val_loss: 0.2590 - learning_rate: 5.0000e-04
+Epoch 94/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 21ms/step - accuracy: 0.8673 - loss: 0.3558 - val_accuracy: 0.8994 - val_loss: 0.2562 - learning_rate: 5.0000e-04
+Epoch 95/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8686 - loss: 0.3501 - val_accuracy: 0.9030 - val_loss: 0.2511 - learning_rate: 5.0000e-04
+Epoch 96/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8682 - loss: 0.3524 - val_accuracy: 0.9032 - val_loss: 0.2523 - learning_rate: 5.0000e-04
+Epoch 97/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 20ms/step - accuracy: 0.8694 - loss: 0.3554 - val_accuracy: 0.9045 - val_loss: 0.2471 - learning_rate: 5.0000e-04
+Epoch 98/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8720 - loss: 0.3426 - val_accuracy: 0.9004 - val_loss: 0.2546 - learning_rate: 5.0000e-04
+Epoch 99/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8726 - loss: 0.3429 - val_accuracy: 0.9059 - val_loss: 0.2496 - learning_rate: 5.0000e-04
+Epoch 100/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8692 - loss: 0.3503 - val_accuracy: 0.9003 - val_loss: 0.2561 - learning_rate: 5.0000e-04
+Epoch 101/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8725 - loss: 0.3452 - val_accuracy: 0.9055 - val_loss: 0.2495 - learning_rate: 5.0000e-04
+Epoch 102/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 20ms/step - accuracy: 0.8692 - loss: 0.3483 - val_accuracy: 0.9050 - val_loss: 0.2515 - learning_rate: 5.0000e-04
+Epoch 103/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 20ms/step - accuracy: 0.8707 - loss: 0.3471 - val_accuracy: 0.9040 - val_loss: 0.2483 - learning_rate: 5.0000e-04
+Epoch 104/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8720 - loss: 0.3428 - val_accuracy: 0.8994 - val_loss: 0.2521 - learning_rate: 5.0000e-04
+Epoch 105/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8754 - loss: 0.3344 - val_accuracy: 0.9066 - val_loss: 0.2469 - learning_rate: 2.5000e-04
+Epoch 106/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 23ms/step - accuracy: 0.8763 - loss: 0.3323 - val_accuracy: 0.9030 - val_loss: 0.2492 - learning_rate: 2.5000e-04
+Epoch 107/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8749 - loss: 0.3316 - val_accuracy: 0.9028 - val_loss: 0.2492 - learning_rate: 2.5000e-04
+Epoch 108/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8798 - loss: 0.3278 - val_accuracy: 0.9084 - val_loss: 0.2415 - learning_rate: 2.5000e-04
+Epoch 109/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8803 - loss: 0.3220 - val_accuracy: 0.9035 - val_loss: 0.2426 - learning_rate: 2.5000e-04
+Epoch 110/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8782 - loss: 0.3245 - val_accuracy: 0.9074 - val_loss: 0.2427 - learning_rate: 2.5000e-04
+Epoch 111/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 6s 17ms/step - accuracy: 0.8805 - loss: 0.3201 - val_accuracy: 0.9067 - val_loss: 0.2410 - learning_rate: 2.5000e-04
+Epoch 112/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8771 - loss: 0.3239 - val_accuracy: 0.9066 - val_loss: 0.2429 - learning_rate: 2.5000e-04
+Epoch 113/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8797 - loss: 0.3184 - val_accuracy: 0.9064 - val_loss: 0.2414 - learning_rate: 2.5000e-04
+Epoch 114/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 20ms/step - accuracy: 0.8797 - loss: 0.3218 - val_accuracy: 0.9021 - val_loss: 0.2487 - learning_rate: 2.5000e-04
+Epoch 115/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8782 - loss: 0.3205 - val_accuracy: 0.9091 - val_loss: 0.2380 - learning_rate: 2.5000e-04
+Epoch 116/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8780 - loss: 0.3213 - val_accuracy: 0.9067 - val_loss: 0.2399 - learning_rate: 2.5000e-04
+Epoch 117/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8809 - loss: 0.3198 - val_accuracy: 0.9083 - val_loss: 0.2398 - learning_rate: 2.5000e-04
+Epoch 118/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 20ms/step - accuracy: 0.8812 - loss: 0.3240 - val_accuracy: 0.9095 - val_loss: 0.2387 - learning_rate: 2.5000e-04
+Epoch 119/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8787 - loss: 0.3209 - val_accuracy: 0.9061 - val_loss: 0.2427 - learning_rate: 2.5000e-04
+Epoch 120/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 6s 17ms/step - accuracy: 0.8804 - loss: 0.3191 - val_accuracy: 0.9093 - val_loss: 0.2370 - learning_rate: 2.5000e-04
+Epoch 121/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8824 - loss: 0.3168 - val_accuracy: 0.9101 - val_loss: 0.2380 - learning_rate: 2.5000e-04
+Epoch 122/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 6s 17ms/step - accuracy: 0.8803 - loss: 0.3225 - val_accuracy: 0.9086 - val_loss: 0.2386 - learning_rate: 2.5000e-04
+Epoch 123/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 6s 17ms/step - accuracy: 0.8819 - loss: 0.3191 - val_accuracy: 0.9093 - val_loss: 0.2401 - learning_rate: 2.5000e-04
+Epoch 124/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8803 - loss: 0.3177 - val_accuracy: 0.9086 - val_loss: 0.2396 - learning_rate: 2.5000e-04
+Epoch 125/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 9s 24ms/step - accuracy: 0.8800 - loss: 0.3203 - val_accuracy: 0.9086 - val_loss: 0.2370 - learning_rate: 2.5000e-04
+Epoch 126/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 21ms/step - accuracy: 0.8810 - loss: 0.3162 - val_accuracy: 0.9074 - val_loss: 0.2393 - learning_rate: 2.5000e-04
+Epoch 127/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8785 - loss: 0.3221 - val_accuracy: 0.9088 - val_loss: 0.2372 - learning_rate: 2.5000e-04
+Epoch 128/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8849 - loss: 0.3108 - val_accuracy: 0.9083 - val_loss: 0.2378 - learning_rate: 1.2500e-04
+Epoch 129/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 20ms/step - accuracy: 0.8834 - loss: 0.3102 - val_accuracy: 0.9096 - val_loss: 0.2357 - learning_rate: 1.2500e-04
+Epoch 130/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8846 - loss: 0.3116 - val_accuracy: 0.9108 - val_loss: 0.2340 - learning_rate: 1.2500e-04
+Epoch 131/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 21ms/step - accuracy: 0.8813 - loss: 0.3107 - val_accuracy: 0.9100 - val_loss: 0.2342 - learning_rate: 1.2500e-04
+Epoch 132/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 21ms/step - accuracy: 0.8854 - loss: 0.3078 - val_accuracy: 0.9064 - val_loss: 0.2374 - learning_rate: 1.2500e-04
+Epoch 133/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 21ms/step - accuracy: 0.8846 - loss: 0.3054 - val_accuracy: 0.9084 - val_loss: 0.2359 - learning_rate: 1.2500e-04
+Epoch 134/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 20ms/step - accuracy: 0.8842 - loss: 0.3129 - val_accuracy: 0.9084 - val_loss: 0.2371 - learning_rate: 1.2500e-04
+Epoch 135/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8843 - loss: 0.3064 - val_accuracy: 0.9095 - val_loss: 0.2361 - learning_rate: 1.2500e-04
+Epoch 136/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 20ms/step - accuracy: 0.8865 - loss: 0.3061 - val_accuracy: 0.9090 - val_loss: 0.2346 - learning_rate: 1.2500e-04
+Epoch 137/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 22ms/step - accuracy: 0.8842 - loss: 0.3085 - val_accuracy: 0.9100 - val_loss: 0.2355 - learning_rate: 1.2500e-04
+Epoch 138/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 20ms/step - accuracy: 0.8858 - loss: 0.3032 - val_accuracy: 0.9103 - val_loss: 0.2336 - learning_rate: 6.2500e-05
+Epoch 139/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 21ms/step - accuracy: 0.8860 - loss: 0.3044 - val_accuracy: 0.9095 - val_loss: 0.2338 - learning_rate: 6.2500e-05
+Epoch 140/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 21ms/step - accuracy: 0.8873 - loss: 0.3024 - val_accuracy: 0.9095 - val_loss: 0.2341 - learning_rate: 6.2500e-05
+Epoch 141/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 20ms/step - accuracy: 0.8894 - loss: 0.2990 - val_accuracy: 0.9101 - val_loss: 0.2313 - learning_rate: 6.2500e-05
+Epoch 142/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 23ms/step - accuracy: 0.8865 - loss: 0.3014 - val_accuracy: 0.9107 - val_loss: 0.2339 - learning_rate: 6.2500e-05
+Epoch 143/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 12s 32ms/step - accuracy: 0.8874 - loss: 0.3026 - val_accuracy: 0.9113 - val_loss: 0.2315 - learning_rate: 6.2500e-05
+Epoch 144/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 21ms/step - accuracy: 0.8863 - loss: 0.3034 - val_accuracy: 0.9110 - val_loss: 0.2347 - learning_rate: 6.2500e-05
+Epoch 145/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 6s 17ms/step - accuracy: 0.8861 - loss: 0.3053 - val_accuracy: 0.9112 - val_loss: 0.2330 - learning_rate: 6.2500e-05
+Epoch 146/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 6s 17ms/step - accuracy: 0.8850 - loss: 0.3029 - val_accuracy: 0.9112 - val_loss: 0.2330 - learning_rate: 6.2500e-05
+Epoch 147/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 19ms/step - accuracy: 0.8849 - loss: 0.3051 - val_accuracy: 0.9101 - val_loss: 0.2318 - learning_rate: 6.2500e-05
+Epoch 148/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 20ms/step - accuracy: 0.8888 - loss: 0.2986 - val_accuracy: 0.9101 - val_loss: 0.2313 - learning_rate: 6.2500e-05
+Epoch 149/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 7s 18ms/step - accuracy: 0.8866 - loss: 0.3002 - val_accuracy: 0.9100 - val_loss: 0.2325 - learning_rate: 3.1250e-05
+Epoch 150/150
+368/368 ━━━━━━━━━━━━━━━━━━━━ 8s 23ms/step - accuracy: 0.8880 - loss: 0.3006 - val_accuracy: 0.9095 - val_loss: 0.2323 - learning_rate: 3.1250e-05
+
+⏱️  18.9 minutos  |  150 épocas
+
+=================================================================
+RESULTADOS GLOBALES — LSTM
+=================================================================
+   Accuracy:              91.2446%
+   F1 weighted:           88.6830%
+   F1 macro:              88.5830%
+   F1 micro:              91.2446%
+   AUC-ROC macro:         0.9889
+   AUC-ROC weighted:      0.9848
+   Latencia/muestra:      1.1643 ms
+   Tiempo entrenamiento:  1136.7019 s
+   Épocas ejecutadas:     150
+   Parámetros del modelo: 40,205
+
+=================================================================
+CLASSIFICATION REPORT POR CLASE
+=================================================================
+                      precision    recall  f1-score   support
+
+        Monofasica-A       0.00      0.00      0.00       432
+        Monofasica-B       0.98      0.85      0.91       432
+        Monofasica-C       0.98      0.98      0.98       432
+         Bifasica-AB       0.99      0.99      0.99       432
+         Bifasica-AC       0.98      0.99      0.99       432
+         Bifasica-BC       0.98      0.98      0.98       432
+    Trifasica-tierra       0.95      0.90      0.92       432
+         FaseFase-AB       0.99      1.00      0.99       432
+         FaseFase-AC       1.00      0.99      0.99       432
+         FaseFase-BC       1.00      1.00      1.00       432
+Trifasica-sin-tierra       0.91      0.95      0.93       432
+       Espira-espira       0.78      0.97      0.86      1728
+   Devanado-devanado       0.94      0.99      0.97       864
+
+            accuracy                           0.91      7344
+           macro avg       0.88      0.89      0.89      7344
+        weighted avg       0.87      0.91      0.89      7344
+
+=================================================================
+CONFUSION MATRIX
+=================================================================
+                        Monofa  Monofa  Monofa  Bifasi  Bifasi  Bifasi  Trifas  FaseFa  FaseFa  FaseFa  Trifas  Espira  Devana
+  Monofasica-A               0       0       0       0       0       0       0       0       0       0       1     418      13
+  Monofasica-B               0     368       7       0       0       0       0       0       0       0       0      56       1
+  Monofasica-C               0       4     425       0       0       0       0       0       0       0       0       3       0
+  Bifasica-AB                0       0       0     426       4       2       0       0       0       0       0       0       0
+  Bifasica-AC                0       0       0       1     429       2       0       0       0       0       0       0       0
+  Bifasica-BC                0       0       0       4       4     424       0       0       0       0       0       0       0
+  Trifasica-tierra           0       0       0       0       0       3     389       0       0       0      40       0       0
+  FaseFase-AB                0       0       0       0       0       0       1     431       0       0       0       0       0
+  FaseFase-AC                0       0       0       0       0       0       0       5     427       0       0       0       0
+  FaseFase-BC                0       0       0       0       0       0       0       0       1     431       0       0       0
+  Trifasica-sin-tierra       0       0       0       0       0       0      21       0       0       2     409       0       0
+  Espira-espira              0       4       0       0       0       0       0       0       0       0       0    1684      40
+  Devanado-devanado          0       0       0       0       0       0       0       0       0       0       0       6     858
+
+=================================================================
+AUC-ROC POR CLASE
+=================================================================
+   Monofasica-A              0.8976
+   Monofasica-B              0.9984
+   Monofasica-C              0.9999
+   Bifasica-AB               0.9999
+   Bifasica-AC               0.9999
+   Bifasica-BC               0.9998
+   Trifasica-tierra          0.9988
+   FaseFase-AB               0.9999
+   FaseFase-AC               0.9999
+   FaseFase-BC               0.9999
+   Trifasica-sin-tierra      0.9990
+   Espira-espira             0.9624
+   Devanado-devanado         0.9997
+   MACRO AVERAGE             0.9889
+
+=================================================================
+ANÁLISIS ESPECÍFICO — ESPIRA-ESPIRA vs MONOFÁSICA-A
+=================================================================
+   Accuracy binario: 77.96%
+
+=================================================================
+CURVAS DE ENTRENAMIENTO (resumen)
+=================================================================
+   Mejor val_accuracy: 91.13% (época 143)
+   Train accuracy final: 88.80%
+   Val accuracy final:   90.95%
+
+=================================================================
+ANÁLISIS DE DEPENDENCIAS TEMPORALES
+=================================================================
+   Si el LSTM supera al RF, significa que la dependencia
+   entre ventanas temporales aporta información adicional
+   más allá de los features inter-ventana del tensor.
+   LSTM Accuracy: 91.24%
+   (Comparar contra RF en 02_rf_results.json)
+
+=================================================================
+VERIFICACIÓN DE CONSISTENCIA
+=================================================================
+   Accuracy:    91.2446%
+   F1 weighted: 88.6830%
+   Diferencia:  2.5616 puntos
+
+💾 results\04_lstm_results.json
+(.venv) PS E:\TransformerFaultDetection>
